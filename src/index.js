@@ -1,25 +1,18 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { render } from 'react-dom'
 import './index.css';
-import { NavBar, Icon } from 'antd-mobile';
-
-import { createStore, applyMiddleware, combineReducers } from 'redux';
 import { Provider } from 'react-redux';
-import saga from 'redux-saga';
+import { createStore, applyMiddleware, combineReducers } from 'redux'
+import createSagaMiddleware from 'redux-saga'
+import * as rootReducer from './reducers'
+import rootSaga from './sagas'
 
-import * as reducers from './reducers';
-const reducer = combineReducers(reducers);
-const middlewares = [];
-// 创建中间件saga
-const sagaMiddleware = saga();
-
-middlewares.push(sagaMiddleware);
-
-//applymiddleware配置中间件
-const createStoreWithMiddleware = applyMiddleware(...middlewares)(createStore);
-
-const store = createStoreWithMiddleware(reducer);
-
+const sagaMiddleware = createSagaMiddleware()
+const store = createStore(
+  combineReducers(rootReducer),
+  applyMiddleware(sagaMiddleware)
+)
+sagaMiddleware.run(rootSaga)
 
 import App from './app';
 
@@ -28,5 +21,4 @@ const Root = () => (
         <App />
     </Provider>
 );
-
-ReactDOM.render(<Root />, document.getElementById('root'));
+render(<Root />, document.getElementById('root'));
