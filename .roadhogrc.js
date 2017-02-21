@@ -20,8 +20,8 @@ export default {
         "transform-runtime",
         ["import",
         {
-          "libraryName": "antd-mobile",
-          "style": "css"
+          libraryName: "antd-mobile",
+          style: "css"
         }]
       ]
     },
@@ -36,8 +36,8 @@ export default {
         "transform-runtime",
         ["import",
         {
-          "libraryName": "antd-mobile",
-          "style": "css"
+          libraryName: "antd-mobile",
+          style: "css"
         }]
       ]
     }

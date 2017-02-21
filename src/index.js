@@ -3,19 +3,30 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import { NavBar, Icon } from 'antd-mobile';
 
-function App() {
-  return (
-    <div style={{ margin: 100 }}>
-    <NavBar leftContent="返回" mode="light" onLeftClick={() => console.log('onLeftClick')}
-    rightContent={[
-      <Icon key="0" type="search" style={{ marginRight: '0.32rem' }} />,
-      <Icon key="1" type="ellipsis" />,
-    ]}
-  >NavBar</NavBar>
-      <h1>AntDesign Demo</h1>
-      <hr /><br />
-    </div>
-  );
-}
+import { createStore, applyMiddleware, combineReducers } from 'redux';
+import { Provider } from 'react-redux';
+import saga from 'redux-saga';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+import * as reducers from './reducers';
+const reducer = combineReducers(reducers);
+const middlewares = [];
+// 创建中间件saga
+const sagaMiddleware = saga();
+
+middlewares.push(sagaMiddleware);
+
+//applymiddleware配置中间件
+const createStoreWithMiddleware = applyMiddleware(...middlewares)(createStore);
+
+const store = createStoreWithMiddleware(reducer);
+
+
+import App from './app';
+
+const Root = () => (
+    <Provider store={store}>
+        <App />
+    </Provider>
+);
+
+ReactDOM.render(<Root />, document.getElementById('root'));
