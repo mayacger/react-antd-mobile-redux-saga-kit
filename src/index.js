@@ -14,11 +14,11 @@ const store = createStore(
 )
 sagaMiddleware.run(rootSaga)
 
-import App from './app';
+import Routes from './routes';
 
 const Root = () => (
     <Provider store={store}>
-        <App />
+        <Routes />
     </Provider>
 );
 render(<Root />, document.getElementById('root'));
