@@ -1,5 +1,5 @@
 import React from 'react'
-import {  Router, Route, hashHistory, IndexRoute } from 'react-router'
+import {  Router, Route, hashHistory, IndexRoute, browserHistory } from 'react-router'
 
 import App from './app'
 import Counter from './components/Counter';
