@@ -12,7 +12,7 @@ roadhog构建服务
 参考：https://github.com/sorrycc/roadhog
 roadhog 资源文件必须在src、public。默认没有说明；
 ### 安装
-
+Clone this repo
 ```bash
 $ npm i roadhog -g
 $ npm i
