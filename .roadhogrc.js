@@ -1,45 +1,54 @@
-import pxtorem from 'postcss-pxtorem';
+const path = require('path');
+const pxtorem = require('postcss-pxtorem');
+
+const svgSpriteDirs = [
+  require.resolve('antd-mobile').replace(/warn\.js$/, ''), // antd-mobile 内置svg
+  path.resolve(__dirname, 'src/svg/'),  // 业务代码本地私有 svg 存放目录
+];
+
 export default {
-  "entry": "src/index.js",
+  entry: 'src/index.js',
+  svgSpriteLoaderDirs: svgSpriteDirs,
+  "theme": "./theme.config.js",
   "proxy": {
     "/api": {
-      "target": "http://jsonplaceholder.typicode.com/",
-      "changeOrigin": true,
-      "pathRewrite": { "^/api" : "" }
+      "target": "http://xx.com/",
+      "changeOrigin": true
+      // "pathRewrite": { "^/api" : "" }
     }
   },
-  "env": {
-    "development": {
+  env: {
+    development: {
+      extraBabelPlugins: [
+        'dva-hmr',
+        'transform-runtime',
+        ['import',
+         { 'libraryName': 'antd-mobile','style': true },
+         { 'libraryName': 'antd','style': true }
+        ]
+      ],
       extraPostCSSPlugins: [
         pxtorem({
           rootValue: 100,
           propWhiteList: [],
         }),
       ],
-      "extraBabelPlugins": [
-        "transform-runtime",
-        ["import",
-        {
-          libraryName: "antd-mobile",
-          style: "css"
-        }]
-      ]
     },
-    "production": {
+    production: {
+      extraBabelPlugins: [
+        'transform-runtime',
+        ['import', 
+          
+          { 'libraryName': 'antd-mobile', 'style': true },
+          { 'libraryName': 'antd', 'style': true }
+        ]
+      ],
       extraPostCSSPlugins: [
         pxtorem({
           rootValue: 100,
           propWhiteList: [],
         }),
       ],
-      "extraBabelPlugins": [
-        "transform-runtime",
-        ["import",
-        {
-          libraryName: "antd-mobile",
-          style: "css"
-        }]
-      ]
     }
   }
-};
+}

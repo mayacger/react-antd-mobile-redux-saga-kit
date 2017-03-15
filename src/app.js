@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { NavBar, Icon } from 'antd-mobile';
 import './index.css';
+import 'antd/dist/antd.css';
 import Counter from './components/Counter';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 import {  Link } from 'react-router'
