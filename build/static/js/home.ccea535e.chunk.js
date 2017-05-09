@@ -1,0 +1,2 @@
+webpackJsonp([2],{207:function(e,t,n){"use strict";function u(e){return e&&e.__esModule?e:{default:e}}Object.defineProperty(t,"__esModule",{value:!0});var l=n(3),o=u(l),c=function(){return o.default.createElement("div",null,o.default.createElement("h2",{onClick:function(){return console.log(2)}},"Topics"))};t.default=c}});
+//# sourceMappingURL=home.ccea535e.chunk.js.map

@@ -1,56 +1,18 @@
 import React, { Component } from 'react';
-import { NavBar, Icon } from 'antd-mobile';
-import './index.css';
-import 'antd/dist/antd.css';
-import Counter from './components/Counter';
-import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
-import {  Link } from 'react-router'
+import { Provider } from 'react-redux';
 
+import Routes from './navigators/routes';
 
-class App extends Component{
-
-  goBack = () => {
-    console.log(this.context.router)
-    console.log(this.props)
-    const { location } = this.props;
-    if (location.pathname !== '/') {
-      this.context.router.goBack()
-    }
-  }
-
-  render() {
-    const { routes, location, children } = this.props;
+import configureStore from './store/configureStore';
+const store = configureStore();
+class App extends Component {
+  render () {
     return (
-      <div >
-        <NavBar leftContent={location.pathname === '/' ? false : '返回'}
-                iconName={location.pathname === '/' ? false : 'left' }
-                mode="light"
-                onLeftClick={() => this.goBack()}
-                rightContent={[
-                  <Icon key="0" type="search" style={{ marginRight: '0.32rem' }} />,
-                  <Icon key="1" type="ellipsis" />,
-                ]}>
-        {         routes[routes.length -1].title || '首页'}
-      </NavBar>
-
-        <ReactCSSTransitionGroup
-          component="div"
-          transitionName="example"
-          transitionEnterTimeout={500}
-          transitionLeaveTimeout={500}
-        >
-          {React.cloneElement(children, {
-            key: location.pathname
-          })}
-        </ReactCSSTransitionGroup>
-      </div>
-    );
+      <Provider store={store}>
+          <Routes />
+      </Provider>
+    )
   }
-
 }
-
-App.contextTypes = {
-  router: React.PropTypes.object
-};
 
 export default App;
