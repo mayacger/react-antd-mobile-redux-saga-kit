@@ -33,4 +33,4 @@ serve -s build
 
 
 
-  这是一个demo kit，不建议正式使用；
+## 这是一个demo kit，不建议正式使用；
