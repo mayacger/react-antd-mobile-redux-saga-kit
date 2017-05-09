@@ -1,6 +1,6 @@
 # create-react-app react react-router antd-mobile redux redux-saga kit
 
-
+![Alt text](/demo.png)
 
 ## 本地使用
 
@@ -28,8 +28,9 @@ serve -s build
 ## 简单说明
 
 
-  使用的react-router 3X，"react": "15.4.0"，测试中发现antd-mobile和react最新版有点问题，有意想不到的bug，所以采用15.40。
+* 使用的react-router 3X，
+* react "15.4.0"，测试中发现antd-mobile和react最新版有点问题，有意想不到的bug，所以采用15.4.0。
 
-  
+
 
   这是一个demo kit，不建议正式使用；
