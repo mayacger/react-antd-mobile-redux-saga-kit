@@ -41,7 +41,7 @@ class Tab extends Component {
         >
         {this.state.items && this.state.items.map((item, index) => {
           return (<TabBar.Item
-            title="生活"
+            title={item.title || "首页"}
             key={index}
             icon={item.tab.icon}
             selectedIcon={item.tab.selectedIcon}

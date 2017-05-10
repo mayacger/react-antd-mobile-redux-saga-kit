@@ -2,6 +2,7 @@ import React from 'react';
 import { Icon } from 'antd-mobile';
 module.exports = {
   path: 'home',
+  title: "首页",
   rightContent: [
     <Icon onClick={() => console.log(1)} key="0" type="search" style={{ marginRight: '0.32rem' }} />,
     <Icon key="1" type="ellipsis" />,
