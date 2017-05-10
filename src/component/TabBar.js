@@ -19,6 +19,17 @@ class Tab extends Component {
     return items;
   }
 
+  getActive = (path, index) => {
+
+    let patt1 = new RegExp(path);
+		if (patt1.test(location.pathname)) {
+      return true;
+		}
+    if (location.pathname === "/" && index === 0) {
+      return true;
+    }
+  }
+
   render() {
 
     return (
@@ -34,13 +45,10 @@ class Tab extends Component {
             key={index}
             icon={item.tab.icon}
             selectedIcon={item.tab.selectedIcon}
-            selected={this.state.selectedTab === index}
+            selected={this.getActive(item.path, index)}
             badge={item.tab.badge}
             onPress={() => {
 
-              this.setState({
-                selectedTab: index,
-              });
               if(item.path) this.props.navigate(item.path);
               if(item.tab.onPress) item.tab.onPress();
             }}
